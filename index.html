@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Freecash - Get Paid for Gaming</title>
+  <meta name="description" content="Get paid for gaming and scrolling. Earn cash with daily offers, surveys, and games. Sign up bonus available!" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background: 0 0% 4%;
+      --foreground: 0 0% 100%;
+      --card: 0 0% 8%;
+      --card-foreground: 0 0% 100%;
+      --primary: 152 100% 41%;
+      --primary-foreground: 0 0% 0%;
+      --secondary: 0 0% 12%;
+      --secondary-foreground: 0 0% 100%;
+      --muted: 0 0% 15%;
+      --muted-foreground: 0 0% 53%;
+      --accent: 152 100% 60%;
+      --accent-foreground: 0 0% 0%;
+      --border: 0 0% 20%;
+      --radius: 0.75rem;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      border-color: hsl(var(--border));
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      -webkit-font-smoothing: antialiased;
+      background-image: 
+        linear-gradient(180deg, rgba(0,0,0,0.9) 0%, hsl(0 0% 4%) 100%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300d369' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      min-height: 100vh;
+    }
+
+    .container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .container {
+        padding: 1.5rem;
+      }
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 28rem;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      animation: fade-in-up 0.5s ease-out;
+    }
+
+    /* Step Header */
+    .step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: hsl(var(--primary));
+    }
+
+    .step-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: hsl(var(--primary));
+      border-radius: 9999px;
+      box-shadow: 0 0 10px hsl(var(--primary));
+    }
+
+    .step-counter {
+      font-size: 0.75rem;
+      color: hsl(var(--muted-foreground));
+      background-color: hsl(var(--secondary) / 0.5);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: left;
+      padding: 0.5rem 0;
+    }
+
+    .hero h1 {
+      font-size: 1.875rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+      letter-spacing: -0.025em;
+    }
+
+    @media (min-width: 640px) {
+      .hero h1 {
+        font-size: 2.25rem;
+      }
+    }
+
+    .highlight {
+      display: inline-block;
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+      padding: 0.125rem 0.75rem;
+      border-radius: 0.375rem;
+      transform: rotate(-2deg);
+      margin-top: 0.25rem;
+    }
+
+    /* Bonus Badge */
+    .bonus-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: linear-gradient(to right, hsl(var(--secondary)), hsl(var(--card)));
+      border-left: 4px solid hsl(var(--primary));
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .bonus-icon {
+      font-size: 1.25rem;
+    }
+
+    .bonus-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bonus-title {
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: hsl(var(--foreground));
+    }
+
+    .bonus-subtitle {
+      color: hsl(var(--primary));
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    /* Star Rating */
+    .star-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: hsl(var(--foreground));
+      margin-top: 1rem;
+    }
+
+    .star-rating svg {
+      width: 1rem;
+      height: 1rem;
+      fill: hsl(var(--foreground));
+    }
+
+    .star-rating .rating-text {
+      color: hsl(var(--muted-foreground));
+      font-weight: 400;
+      margin-left: 0.25rem;
+      font-size: 0.75rem;
+    }
+
+    /* Description */
+    .description {
+      color: hsl(var(--muted-foreground));
+      font-size: 1rem;
+      line-height: 1.625;
+      margin-top: 0.75rem;
+    }
+
+    .description strong {
+      color: hsl(var(--foreground));
+      font-weight: 600;
+    }
+
+    /* Stats */
+    .stats {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .stat-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background-color: hsl(var(--secondary) / 0.3);
+      border: 1px solid hsl(var(--border) / 0.5);
+      border-radius: 0.75rem;
+      padding: 0.75rem;
+      flex: 1;
+      backdrop-filter: blur(4px);
+    }
+
+    .stat-icon {
+      color: hsl(var(--primary));
+    }
+
+    .stat-icon svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .stat-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-value {
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: hsl(var(--foreground));
+    }
+
+    .stat-label {
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      color: hsl(var(--muted-foreground));
+    }
+
+    /* Instruction */
+    .instruction {
+      text-align: center;
+      color: hsl(var(--foreground));
+      font-weight: 600;
+      font-size: 0.875rem;
+      animation: bounce-subtle 2s infinite;
+      margin-top: 1rem;
+    }
+
+    /* Option Cards */
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 0.25rem;
+    }
+
+    .option-card {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(145deg, hsl(0 0% 10%), hsl(0 0% 8%));
+      padding: 1.25rem;
+      border-radius: 1rem;
+      border: 1px solid hsl(var(--border));
+      transition: all 0.2s;
+      text-align: left;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .option-card:hover {
+      border-color: hsl(var(--primary));
+      transform: scale(1.02);
+      background-color: hsl(var(--secondary));
+    }
+
+    .option-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .option-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: hsl(var(--foreground));
+    }
+
+    .option-description {
+      font-size: 0.875rem;
+      color: hsl(var(--muted-foreground) / 0.7);
+    }
+
+    .option-circle {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 9999px;
+      border: 2px solid hsl(var(--border));
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+
+    .option-card:hover .option-circle {
+      border-color: hsl(var(--primary));
+      background-color: hsl(var(--primary) / 0.1);
+    }
+
+    /* Step Two Styles */
+    .step-badge-white {
+      color: hsl(var(--foreground));
+    }
+
+    .hero-complete {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 0;
+    }
+
+    .check-circle {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 9999px;
+      border: 2px solid hsl(var(--primary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .check-circle svg {
+      width: 1.75rem;
+      height: 1.75rem;
+      color: hsl(var(--primary));
+    }
+
+    .hero-complete h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+    }
+
+    @media (min-width: 640px) {
+      .hero-complete h1 {
+        font-size: 3rem;
+      }
+    }
+
+    .highlight-rotated {
+      display: inline-block;
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+      padding: 0.125rem 0.75rem;
+      border-radius: 0.375rem;
+      transform: rotate(-3deg);
+      font-weight: 800;
+    }
+
+    .subheadline {
+      color: hsl(var(--muted-foreground));
+      font-size: 1rem;
+      line-height: 1.625;
+    }
+
+    /* CTA Button */
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+      font-weight: 800;
+      font-size: 1.125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      height: 4rem;
+      border-radius: 0.75rem;
+      padding: 0 2rem;
+      width: 100%;
+      margin-top: 1rem;
+      text-decoration: none;
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.4);
+      animation: pulse-glow 2s infinite;
+      transition: transform 0.2s;
+    }
+
+    .cta-button:hover {
+      transform: scale(1.05);
+    }
+
+    .cta-button svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    /* Roadmap */
+    .roadmap {
+      margin-top: 1.5rem;
+      padding-left: 0.5rem;
+    }
+
+    .roadmap-label {
+      font-size: 0.6875rem;
+      color: hsl(var(--muted-foreground));
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .timeline-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 1.5rem;
+      left: 9px;
+      width: 1px;
+      height: calc(100% + 8px);
+      background-color: hsl(var(--border));
+      z-index: -1;
+    }
+
+    .timeline-marker {
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 9999px;
+      border: 2px solid hsl(var(--border));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.625rem;
+      font-weight: 700;
+      color: hsl(var(--muted-foreground));
+    }
+
+    .timeline-marker.complete {
+      border-color: hsl(var(--primary));
+      color: hsl(var(--primary));
+      box-shadow: 0 0 10px hsl(var(--primary) / 0.3);
+    }
+
+    .timeline-marker.complete svg {
+      width: 0.75rem;
+      height: 0.75rem;
+    }
+
+    .timeline-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.125rem;
+      padding-bottom: 1.25rem;
+    }
+
+    .timeline-title {
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: hsl(var(--foreground));
+    }
+
+    .timeline-description {
+      font-size: 0.75rem;
+      color: hsl(var(--muted-foreground));
+    }
+
+    /* Hidden class */
+    .hidden {
+      display: none;
+    }
+
+    /* Animations */
+    @keyframes pulse-glow {
+      0% {
+        box-shadow: 0 0 0 0 hsl(var(--primary) / 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 10px hsl(var(--primary) / 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 hsl(var(--primary) / 0);
+      }
+    }
+
+    @keyframes bounce-subtle {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-5px);
+      }
+      60% {
+        transform: translateY(-3px);
+      }
+    }
+
+    @keyframes fade-in-up {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="wrapper">
+      <!-- Step One -->
+      <div class="content" id="step-one">
+        <!-- Step Header -->
+        <div class="step-header">
+          <div class="step-badge">
+            <span class="step-dot"></span>
+            Freecash App
+          </div>
+          <div class="step-counter">1 / 2</div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="hero">
+          <h1>
+            Get Paid for <br />
+            <span class="highlight">Gaming and Scrolling</span>
+          </h1>
+
+          <!-- Bonus Badge -->
+          <div class="bonus-badge">
+            <span class="bonus-icon">🎁</span>
+            <div class="bonus-content">
+              <span class="bonus-title">$5 Sign up Bonus</span>
+              <span class="bonus-subtitle">Available for new users</span>
+            </div>
+          </div>
+
+          <!-- Star Rating -->
+          <div class="star-rating">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span class="rating-text">4.6 (1K Ratings)</span>
+          </div>
+
+          <!-- Description -->
+          <p class="description">
+            <strong>Watch Netflix. Scroll TikTok. Take a walk.</strong><br />
+            Earn cash just by engaging with our daily offers, that you can do any time!
+          </p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats">
+          <div class="stat-pill">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="stat-content">
+              <span class="stat-value">500K+</span>
+              <span class="stat-label">Active Users</span>
+            </div>
+          </div>
+          <div class="stat-pill">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="stat-content">
+              <span class="stat-value">100+</span>
+              <span class="stat-label">Offers</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Instruction -->
+        <p class="instruction">Tap below to get started</p>
+
+        <!-- Age Selection -->
+        <div class="options">
+          <a href="#" class="option-card" onclick="selectAge('over21'); return false;">
+            <div class="option-content">
+              <span class="option-title">I'm over 21</span>
+              <span class="option-description">Instant Payouts: PayPal, CashApp, Venmo, Crypto & Wire</span>
+            </div>
+            <div class="option-circle"></div>
+          </a>
+          <a href="#" class="option-card" onclick="selectAge('under21'); return false;">
+            <div class="option-content">
+              <span class="option-title">I'm under 21</span>
+              <span class="option-description">Limited Payouts: Biweekly Cash, Giftcards & More</span>
+            </div>
+            <div class="option-circle"></div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Step Two (Over 21) -->
+      <div class="content hidden" id="step-two-over21">
+        <!-- Step Header -->
+        <div class="step-header">
+          <div class="step-badge step-badge-white">
+            <span class="step-dot"></span>
+            STEP COMPLETE
+          </div>
+          <div class="step-counter">2 / 2</div>
+        </div>
+
+        <!-- Hero -->
+        <div class="hero-complete">
+          <div class="check-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h1>You're <span class="highlight-rotated">In!</span></h1>
+        </div>
+
+        <p class="subheadline">Your device is confirmed compatible. We have reserved a sign up bonus for you.</p>
+
+        <!-- CTA Button -->
+        <a href="https://www.ch6rrl8trk.com/262DXM/9B9DM/" class="cta-button">
+          <span>DOWNLOAD & START EARNING</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+
+        <!-- Roadmap -->
+        <div class="roadmap">
+          <p class="roadmap-label">YOUR FREECASH EARNING JOURNEY</p>
+          <div class="timeline">
+            <div class="timeline-step">
+              <div class="timeline-line"></div>
+              <div class="timeline-marker complete">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="timeline-content">
+                <span class="timeline-title">Join Freecash</span>
+                <span class="timeline-description">Register your account to access thousands of high-paying offers.</span>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-line"></div>
+              <div class="timeline-marker">2</div>
+              <div class="timeline-content">
+                <span class="timeline-title">Get Paid to Scroll</span>
+                <span class="timeline-description">Simply scroll through content you already love and watch your earnings grow. Make $500 a day from home!</span>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-line"></div>
+              <div class="timeline-marker">3</div>
+              <div class="timeline-content">
+                <span class="timeline-title">Instant Payments</span>
+                <span class="timeline-description">Withdraw your earnings instantly via PayPal, crypto, gift cards, and more payment options.</span>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-marker">4</div>
+              <div class="timeline-content">
+                <span class="timeline-title">Get Your Cash Deposit</span>
+                <span class="timeline-description">Receive your cash deposit directly to your preferred payment method.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step Two (Under 21) -->
+      <div class="content hidden" id="step-two-under21">
+        <!-- Step Header -->
+        <div class="step-header">
+          <div class="step-badge step-badge-white">
+            <span class="step-dot"></span>
+            STEP COMPLETE
+          </div>
+          <div class="step-counter">2 / 2</div>
+        </div>
+
+        <!-- Hero -->
+        <div class="hero-complete">
+          <div class="check-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h1>You're <span class="highlight-rotated">In!</span></h1>
+        </div>
+
+        <p class="subheadline">Earn cash answering questions and playing games. Your device is perfect for our offers! Complete registration to start testing apps, games & surveys with instant cashouts.</p>
+
+        <!-- CTA Button -->
+        <a href="https://www.ch6rrl8trk.com/262DXM/9B9DM/" class="cta-button">
+          <span>DOWNLOAD & START EARNING</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+
+        <!-- Roadmap -->
+        <div class="roadmap">
+          <p class="roadmap-label">YOUR EARNING JOURNEY</p>
+          <div class="timeline">
+            <div class="timeline-step">
+              <div class="timeline-line"></div>
+              <div class="timeline-marker complete">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="timeline-content">
+                <span class="timeline-title">Click the button below</span>
+                <span class="timeline-description">Begin your registration process to get started</span>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-line"></div>
+              <div class="timeline-marker">2</div>
+              <div class="timeline-content">
+                <span class="timeline-title">Enter your email & basic info</span>
+                <span class="timeline-description">Complete your registration by providing your email address and basic details</span>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-line"></div>
+              <div class="timeline-marker">3</div>
+              <div class="timeline-content">
+                <span class="timeline-title">Get Paid to Game and Scroll</span>
+                <span class="timeline-description">Simply scroll through content you already love and watch your earnings grow. Make $500 from home playing games!</span>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-marker">4</div>
+              <div class="timeline-content">
+                <span class="timeline-title">Get your Cash Deposit!</span>
+                <span class="timeline-description">Receive your cash deposit directly to your preferred payment method</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function selectAge(ageGroup) {
+      document.getElementById('step-one').classList.add('hidden');
+      if (ageGroup === 'over21') {
+        document.getElementById('step-two-over21').classList.remove('hidden');
+      } else {
+        document.getElementById('step-two-under21').classList.remove('hidden');
+      }
+      window.scrollTo(0, 0);
+    }
+  </script>
+</body>
+</html>

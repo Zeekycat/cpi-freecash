@@ -6,6 +6,25 @@
   <title>Freecash - Get Paid for Gaming</title>
   <meta name="description" content="Get paid for gaming and scrolling. Earn cash with daily offers, surveys, and games. Sign up bonus available!" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- TikTok Pixel Code Start -->
+  <script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for( var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script") ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+      ttq.load('D40QEC3C77U1STIOVEU0');
+      ttq.page();
+    }(window, document, 'ttq');
+  </script>
+  <!-- TikTok Pixel Code End -->
+  
+  <!--Optional, send client hints to get accurate device data-->
+  <meta http-equiv="delegate-ch" content="sec-ch-ua https://48no3d.mcgo2.com; sec-ch-ua-mobile https://48no3d.mcgo2.com; sec-ch-ua-arch https://48no3d.mcgo2.com; sec-ch-ua-model https://48no3d.mcgo2.com; sec-ch-ua-platform https://48no3d.mcgo2.com; sec-ch-ua-platform-version https://48no3d.mcgo2.com; sec-ch-ua-bitness https://48no3d.mcgo2.com; sec-ch-ua-full-version-list https://48no3d.mcgo2.com; sec-ch-ua-full-version https://48no3d.mcgo2.com" />
+  
+  <!-- MaxConv Tracking Script Base Code-->
+  <script>!function(w,d,o,n,c){w[o]=w[o]||function(){(w[o].q=w[o].q||[]).push(arguments)};var s=d.createElement(n),t=d.getElementsByTagName(n)[0];s.async=!0;s.defer=!0;s.src="https://48no3d.mcgo2.com/t/t.js";t.parentNode.insertBefore(s,t);}(window,document,"maxconv","script");</script>
+  <noscript><link rel="stylesheet" href="https://48no3d.mcgo2.com/t/t.css?mc_ns=1" /></noscript>
+  <!-- End MaxConv Tracking Script Base Code-->
+  
   <style>
     :root {
       --background: 0 0% 4%;
@@ -640,7 +659,7 @@
         <p class="subheadline">Your device is confirmed compatible. We have reserved a sign up bonus for you.</p>
 
         <!-- CTA Button -->
-        <a href="https://www.ch6rrl8trk.com/262DXM/48M9K3/" class="cta-button">
+        <a href="#" class="cta-button" id="cta-over21">
           <span>DOWNLOAD & START EARNING</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -708,7 +727,7 @@
         <p class="subheadline">Earn cash answering questions and playing games. Your device is perfect for our offers! Complete registration to start testing apps, games & surveys with instant cashouts.</p>
 
         <!-- CTA Button -->
-        <a href="https://www.ch6rrl8trk.com/262DXM/9B9DM/" class="cta-button">
+        <a href="#" class="cta-button" id="cta-under21">
           <span>DOWNLOAD & START EARNING</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -756,16 +775,115 @@
     </div>
   </div>
 
-  <script>
-    function selectAge(ageGroup) {
-      document.getElementById('step-one').classList.add('hidden');
-      if (ageGroup === 'over21') {
-        document.getElementById('step-two-over21').classList.remove('hidden');
-      } else {
-        document.getElementById('step-two-under21').classList.remove('hidden');
-      }
-      window.scrollTo(0, 0);
+ <script>
+  // Generate unique event ID for TikTok deduplication
+  function makeEventId(eventName) {
+    return eventName + '_' + Date.now() + '_' + Math.random().toString(36).substring(2, 11);
+  }
+
+  // Get visitor's country code
+  let userCountryCode = '';
+  
+  async function getCountryCode() {
+    try {
+      const response = await fetch('https://ipapi.co/json/');
+      const data = await response.json();
+      userCountryCode = data.country_code || '';
+      console.log('Detected country:', userCountryCode);
+      
+      // Update URLs after country is detected
+      updateButtonURLs();
+    } catch (error) {
+      console.error('Error fetching country:', error);
+      // If API fails, still update URLs without country code
+      updateButtonURLs();
     }
-  </script>
+  }
+  
+  // Call on page load
+  getCountryCode();
+
+  // Get all URL parameters from the current page
+  const urlParams = new URLSearchParams(window.location.search);
+  
+  // Base URLs for each age group
+  const baseURLs = {
+    over21: 'https://www.phef6trk.com/R7TPLH/2SB9BPD/',
+    under21: 'https://www.ch6rrl8trk.com/cmp/M4MBH/4PN2D/'
+  };
+  
+  // Function to build URL with parameters
+  function buildURL(baseURL, ageGroup) {
+    const buttonUrlObj = new URL(baseURL);
+    
+    // Add/override with all parameters from the current page URL
+    urlParams.forEach((value, key) => {
+      let finalValue = value;
+      
+      // If this is sub1 parameter, append country code and age suffix
+      if (key === 'sub1') {
+        // Add country code if available
+        if (userCountryCode) {
+          finalValue = value + '-' + userCountryCode;
+        }
+        // Add "-21" for over21 users
+        if (ageGroup === 'over21') {
+          finalValue = finalValue + '-21';
+        }
+      }
+      
+      buttonUrlObj.searchParams.set(key, finalValue);
+    });
+    
+    return buttonUrlObj.toString();
+  }
+  
+  // Update both CTA button URLs
+  function updateButtonURLs() {
+    const ctaOver21 = document.getElementById('cta-over21');
+    const ctaUnder21 = document.getElementById('cta-under21');
+    
+    ctaOver21.href = buildURL(baseURLs.over21, 'over21');
+    ctaUnder21.href = buildURL(baseURLs.under21, 'under21');
+  }
+  
+  // Add TikTok tracking to CTA buttons
+  function handleCTAClick(e) {
+    e.preventDefault();
+    const targetUrl = e.currentTarget.href;
+    
+    // Fire TikTok AddToCart event
+    const eventId = makeEventId("atc");
+    window.ttq?.track(
+      "AddToCart",
+      {
+        content_type: "product",
+        content_id: "apple-gc-750",
+        value: 0.5,
+        currency: "USD",
+      },
+      { event_id: eventId }
+    );
+    
+    // Short delay to ensure tracking fires, then redirect
+    setTimeout(function() {
+      window.location.href = targetUrl;
+    }, 300);
+  }
+  
+  // Attach click handlers to both CTA buttons
+  document.getElementById('cta-over21').addEventListener('click', handleCTAClick);
+  document.getElementById('cta-under21').addEventListener('click', handleCTAClick);
+  
+  function selectAge(ageGroup) {
+    document.getElementById('step-one').classList.add('hidden');
+    if (ageGroup === 'over21') {
+      document.getElementById('step-two-over21').classList.remove('hidden');
+    } else {
+      document.getElementById('step-two-under21').classList.remove('hidden');
+    }
+    window.scrollTo(0, 0);
+  }
+</script>
 </body>
 </html>

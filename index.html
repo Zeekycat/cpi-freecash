@@ -26,6 +26,7 @@
   <!-- End MaxConv Tracking Script Base Code-->
   
   <style>
+    /* ALL YOUR EXISTING CSS - UNCHANGED */
     :root {
       --background: 0 0% 4%;
       --foreground: 0 0% 100%;
@@ -659,7 +660,7 @@
         <p class="subheadline">Your device is confirmed compatible. We have reserved a sign up bonus for you.</p>
 
         <!-- CTA Button -->
-        <a href="#" class="cta-button" id="cta-over21">
+        <a href="https://48no3d.mcgo2.com/click/2" class="cta-button" id="cta-over21">
           <span>DOWNLOAD & START EARNING</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -727,7 +728,7 @@
         <p class="subheadline">Earn cash answering questions and playing games. Your device is perfect for our offers! Complete registration to start testing apps, games & surveys with instant cashouts.</p>
 
         <!-- CTA Button -->
-        <a href="#" class="cta-button" id="cta-under21">
+        <a href="https://48no3d.mcgo2.com/click/1" class="cta-button" id="cta-under21">
           <span>DOWNLOAD & START EARNING</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -780,52 +781,6 @@
   function makeEventId(eventName) {
     return eventName + '_' + Date.now() + '_' + Math.random().toString(36).substring(2, 11);
   }
-
-  // Get all URL parameters from the current page
-  const urlParams = new URLSearchParams(window.location.search);
-  
-  // Base URLs for each age group (MaxConv click URLs)
-  const baseURLs = {
-    over21: 'https://48no3d.mcgo2.com/click/2',  // Freecash (2nd offer in MaxConv)
-    under21: 'https://48no3d.mcgo2.com/click/1'  // Apple Pay (1st offer in MaxConv)
-  };
-  
-  // Function to build URL with TikTok tracking parameters
-  function buildURL(baseURL, ageGroup) {
-    const buttonUrlObj = new URL(baseURL);
-    
-    // Extract TikTok tracking IDs from URL
-    const campaignId = urlParams.get('cid') || '';
-    const adsetId = urlParams.get('aid') || '';
-    const creativeId = urlParams.get('creative') || '';
-    const campaignName = urlParams.get('sub1') || '';
-    
-    // Pass ALL URL parameters to MaxConv
-    urlParams.forEach((value, key) => {
-      buttonUrlObj.searchParams.set(key, value);
-    });
-    
-    // Add MaxConv-specific tracking tokens for reports
-    // These will show up in MaxConv dashboard for filtering
-    if (campaignId) buttonUrlObj.searchParams.set('external_id', campaignId);
-    if (adsetId) buttonUrlObj.searchParams.set('sub2', adsetId);
-    if (creativeId) buttonUrlObj.searchParams.set('sub3', creativeId);  // THIS IS KEY for creative tracking!
-    if (campaignName) buttonUrlObj.searchParams.set('sub4', campaignName);
-    
-    return buttonUrlObj.toString();
-  }
-  
-  // Update both CTA button URLs on page load
-  function updateButtonURLs() {
-    const ctaOver21 = document.getElementById('cta-over21');
-    const ctaUnder21 = document.getElementById('cta-under21');
-    
-    ctaOver21.href = buildURL(baseURLs.over21, 'over21');
-    ctaUnder21.href = buildURL(baseURLs.under21, 'under21');
-  }
-  
-  // Update URLs on page load
-  updateButtonURLs();
   
   // Add TikTok tracking to CTA buttons
   function handleCTAClick(e) {
@@ -838,7 +793,7 @@
       "AddToCart",
       {
         content_type: "product",
-        content_id: "apple-gc-750",
+        content_id: "freecash-app",
         value: 0.5,
         currency: "USD",
       },

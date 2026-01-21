@@ -775,7 +775,7 @@
     </div>
   </div>
 
- <script>
+<script>
   // Generate unique event ID for TikTok deduplication
   function makeEventId(eventName) {
     return eventName + '_' + Date.now() + '_' + Math.random().toString(36).substring(2, 11);
@@ -784,25 +784,38 @@
   // Get all URL parameters from the current page
   const urlParams = new URLSearchParams(window.location.search);
   
-  // Base URLs for each age group
+  // Base URLs for each age group (MaxConv click URLs)
   const baseURLs = {
-    over21: 'https://48no3d.mcgo2.com/click/2',
-    under21: 'https://48no3d.mcgo2.com/click/1'
+    over21: 'https://48no3d.mcgo2.com/click/2',  // Freecash (2nd offer in MaxConv)
+    under21: 'https://48no3d.mcgo2.com/click/1'  // Apple Pay (1st offer in MaxConv)
   };
   
-  // Function to build URL with parameters
+  // Function to build URL with TikTok tracking parameters
   function buildURL(baseURL, ageGroup) {
     const buttonUrlObj = new URL(baseURL);
     
-    // Add/override with all parameters from the current page URL
+    // Extract TikTok tracking IDs from URL
+    const campaignId = urlParams.get('cid') || '';
+    const adsetId = urlParams.get('aid') || '';
+    const creativeId = urlParams.get('creative') || '';
+    const campaignName = urlParams.get('sub1') || '';
+    
+    // Pass ALL URL parameters to MaxConv
     urlParams.forEach((value, key) => {
       buttonUrlObj.searchParams.set(key, value);
     });
     
+    // Add MaxConv-specific tracking tokens for reports
+    // These will show up in MaxConv dashboard for filtering
+    if (campaignId) buttonUrlObj.searchParams.set('external_id', campaignId);
+    if (adsetId) buttonUrlObj.searchParams.set('sub2', adsetId);
+    if (creativeId) buttonUrlObj.searchParams.set('sub3', creativeId);  // THIS IS KEY for creative tracking!
+    if (campaignName) buttonUrlObj.searchParams.set('sub4', campaignName);
+    
     return buttonUrlObj.toString();
   }
   
-  // Update both CTA button URLs
+  // Update both CTA button URLs on page load
   function updateButtonURLs() {
     const ctaOver21 = document.getElementById('cta-over21');
     const ctaUnder21 = document.getElementById('cta-under21');
